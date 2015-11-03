@@ -1,7 +1,8 @@
 (set-env!
   :project 'semantic-arpa
   :version "0.1.0-SNAPSHOT"
-  :dependencies '[[org.clojure/tools.namespace "0.2.11"]]
+  :dependencies '[[org.clojure/tools.namespace "0.2.11"]
+                  [org.clojure/data.csv "0.1.3"]]
   :exclusions '[]
   :source-paths #{"src"}
   :resource-paths #{"resources"}
