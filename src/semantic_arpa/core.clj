@@ -89,10 +89,10 @@
      (str "\t" "time:day " "\"" (month parsed-datetime) "\"" "^^xsd:gDay ;" "\n")
      (str "\t" "time:inDateTime " "\"" (unparsed-datetime daytime-formatter parsed-datetime) "\"" "^^xsd:time ;" "\n")
      
-            (into
+            (comment (into
              (vector "\t" "ssn:observerdProperty " "\"" substance "\"" " ,")
              ;(observedProperties substance)
-             (vector " ;" "\n"))
+             (vector " ;" "\n")))
 
      (str "\t" "basic:uom " "\"" measure "\"" " ;" "\n")
      
