@@ -45,8 +45,7 @@
 ;"\t" "ssn:observerdProperty " "\"" substance "\"" " ;" "\n"
 (defn observedProperties [substance]
   (let [stuff (reconciliated-values substance)]
-    (apply str (interpose ", " (mapv (fn [item] (str (name (first item)) ":" (second item)))  stuff)))
-    ))
+    (apply str (interpose ", " (mapv (fn [item] (str (name (first item)) ":" (second item)))  stuff)))))
 
 (def multiparser (f/formatter-local "dd/MM/YYYY HH:mm"))
 (def id-formatter (f/formatter-local "ddMMYYYYHHmmss"))
@@ -84,6 +83,9 @@
      (str "\t" "time:month " "\"" (month parsed-datetime) "\"" "^^xsd:gMonth ;" "\n")
      (str "\t" "time:year " "\"" (year parsed-datetime) "\"" "^^xsd:gYear ;" "\n")
      (str "\t" "time:day " "\"" (month parsed-datetime) "\"" "^^xsd:gDay ;" "\n")
+     (str "\t")
+     (observedProperties substance)
+     (str "\n")
      (str "\t" "time:inDateTime " "\"" (unparsed-datetime daytime-formatter parsed-datetime) "\"" "^^xsd:time ;" "\n")
      (str "\t" "basic:uom " "\"" measure "\"" " ;" "\n")
      ]
