@@ -45,7 +45,7 @@
 ;"\t" "ssn:observerdProperty " "\"" substance "\"" " ;" "\n"
 (defn observedProperties [substance]
   (let [stuff (reconciliated-values substance)]
-    (mapv (fn [item] (str (name (first item)) ":" (second item) " ,"))  stuff)
+    (apply str (interpose ", " (mapv (fn [item] (str (name (first item)) ":" (second item)))  stuff)))
     ))
 
 (def multiparser (f/formatter-local "dd/MM/YYYY HH:mm"))
