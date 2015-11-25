@@ -77,19 +77,15 @@
      (str "\n" "openarpa-obs:" station substance
           (unparsed-datetime id-formatter parsed-datetime)
           " a " "ssn:Observation" " ;" "\n")
-     
-     
      (str "\t" "ssn:observationResultTime "
           "\"" (unparsed-datetime rdf-formatter parsed-datetime) "\""
           "^^xsd:dateTime ;" "\n")
-
      (str "\t" "ssn:isProducedBy openarpa-sens:" station " ;" "\n")
      (str "\t" "time:month " "\"" (month parsed-datetime) "\"" "^^xsd:gMonth ;" "\n")
      (str "\t" "time:year " "\"" (year parsed-datetime) "\"" "^^xsd:gYear ;" "\n")
      (str "\t" "time:day " "\"" (month parsed-datetime) "\"" "^^xsd:gDay ;" "\n")
      (str "\t" "time:inDateTime " "\"" (unparsed-datetime daytime-formatter parsed-datetime) "\"" "^^xsd:time ;" "\n")
      (str "\t" "basic:uom " "\"" measure "\"" " ;" "\n")
-     
      ]
     )
   )
@@ -98,4 +94,3 @@
   (writelines "resources/openarpa.ttl"
               (mapcat as-ttl (lines path))
               ))
-  
