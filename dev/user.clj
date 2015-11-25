@@ -1,6 +1,7 @@
 (ns user
   (:require [reloaded.repl :refer [system init start stop go reset]]
-            [semantic-arpa.systems :refer [dev-system]]
+            [semantic_arpa.systems :refer [dev-system]]
+            [semantic_arpa.core :refer [main]]
             
             
             ))
