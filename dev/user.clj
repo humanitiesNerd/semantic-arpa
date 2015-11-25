@@ -13,8 +13,8 @@
   (mapcat arpa/as-ttl (arpa/lines "resources/piccolo.csv")))
 
 
-
-(def b (into
-        (vector "\t" "ssn:observerdProperty " "\"" "NO2" "\"" " ,")
-        (arpa/observedProperties "NO2")
-        (vector " ;" "\n")))
+(comment
+  (def b (into
+          (vector "\t" "ssn:observerdProperty " "\"" "NO2" "\"" " ,")
+          (arpa/observedProperties "NO2")
+          (vector " ;" "\n"))))
