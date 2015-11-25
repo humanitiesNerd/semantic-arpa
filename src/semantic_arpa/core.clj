@@ -70,6 +70,24 @@
 (defn lines [path]
   (csv/read-csv (io/reader (io/file path))))
 
+(defn headers []
+  (vector "@prefix openarpa-obs: <http://openpuglia.org/lod/observation/> .
+@prefix openarpa-sens: <http://openpuglia.org/lod/sensor/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix dbpedia: <http://dbpedia.org/resource/> .
+@prefix ssn: <http://purl.oclc.org/NET/ssnx/ssn#> .
+@prefix geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix dul: <http://www.loa-cnr.it/ontologies/DUL.owl#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix dbpedia-it: <http://it.dbpedia.org/resource/> .
+@prefix basic: <http://def.seegrid.csiro.au/isotc211/iso19103/2005/basic#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+\n\n\n
+"))
+
 (defn as-ttl [[datetime substance value measure station lat lon :as record]]
   (let [parsed-datetime (parsed-datetime datetime)]
     [
@@ -87,12 +105,13 @@
      (observedProperties substance)
      (str "\n")
      (str "\t" "time:inDateTime " "\"" (unparsed-datetime daytime-formatter parsed-datetime) "\"" "^^xsd:time ;" "\n")
-     (str "\t" "basic:uom " "\"" measure "\"" " ;" "\n")
+     (str "\t" "basic:uom " "\"" measure "\"")
+     (str " .\n")
      ]
     )
   )
 
 (defn main [path]
   (writelines "resources/openarpa.ttl"
-              (mapcat as-ttl (lines path))
+              (into (headers) (mapcat as-ttl (lines path)))
               ))
